@@ -1,0 +1,25 @@
+# Browser automation cache & credentials
+amazon-automation/.browser-data-stealth/
+instacart-automation/.browser-data-stealth/
+doordash-automation/.browser-data-stealth/
+playwright/
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment & secrets
+.env
+.env.local
+*.pem
+*.key
+
+# System
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Local overrides
+local.config.js
+secrets.json
