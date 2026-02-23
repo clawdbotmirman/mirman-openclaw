@@ -1,11 +1,12 @@
 {
   "water": {
-    "name": "Mountain Valley Water (Glass Bottles)",
-    "searchQuery": "Mountain Valley Water 33.8oz 12-pack",
+    "name": "Mountain Valley Water (Whole Foods Local)",
+    "searchQuery": "Mountain Valley Water 33.8oz 12-pack whole foods local stores",
     "resultIndex": 0,
     "quantity": 2,
-    "notes": "Preferred: glass bottles, 33.8 fl oz, 12-pack. Reorder every 3 weeks",
-    "priority": ["price", "delivery_speed"]
+    "price": "$34.99/12-pack",
+    "notes": "Whole Foods version: $34.99/case vs $49.40 regular. 33.8 fl oz glass bottles. Reorder every 3 weeks. 2 cases = ~$70.",
+    "priority": ["price"]
   },
   "toothpaste": {
     "name": "Boka Fluoride Free Toothpaste",
