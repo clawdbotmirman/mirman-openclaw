@@ -42,17 +42,21 @@ async function run() {
   // Check if product exists in registry
   let searchQuery;
   let resultIndex = 0;
+  let quantity = 1;
   
   if (products[productQuery.toLowerCase()]) {
     const product = products[productQuery.toLowerCase()];
     searchQuery = product.searchQuery;
     resultIndex = product.resultIndex || 0;
+    quantity = product.quantity || 1;
     console.log(`📦 Ordering: ${product.name}`);
     console.log(`   Search: "${searchQuery}"`);
+    console.log(`   Quantity: ${quantity}`);
   } else {
     // Unknown product - search for it directly
     searchQuery = productQuery;
     console.log(`🔍 Unknown product "${productQuery}" - searching...`);
+    console.log(`   Quantity: 1`);
   }
 
   // Run buy-item script
@@ -61,7 +65,8 @@ async function run() {
   const buyScript = spawn('node', [
     path.join(__dirname, 'buy-item.js'),
     searchQuery,
-    resultIndex.toString()
+    resultIndex.toString(),
+    quantity.toString()
   ]);
 
   buyScript.stdout.on('data', (data) => {

@@ -49,9 +49,10 @@ async function run() {
   const args = process.argv.slice(2);
   const searchQuery = args[0] || 'Mountain Valley Water 33.8oz 12-pack';
   const resultIndex = parseInt(args[1]) || 0;
+  const quantity = parseInt(args[2]) || 1;
 
   if (!searchQuery) {
-    console.error('Usage: node buy-item.js "search query" [result index]');
+    console.error('Usage: node buy-item.js "search query" [result index] [quantity]');
     process.exit(1);
   }
 
@@ -117,6 +118,17 @@ async function run() {
   console.log('4. Cart...');
   await page.goto('https://www.amazon.com/gp/cart/view.html', { waitUntil: 'domcontentloaded', timeout: 30000 });
   await delay(2000, 3000);
+
+  // Set quantity if > 1
+  if (quantity > 1) {
+    console.log(`   Setting quantity to ${quantity}...`);
+    const qtyInputs = await page.$$('input[aria-label*="Quantity"]');
+    if (qtyInputs.length > 0) {
+      await qtyInputs[0].fill(quantity.toString());
+      await delay(1000, 2000);
+    }
+  }
+
   const subtotal = await page.$eval('#sc-subtotal-amount-activecart .sc-price', el => el.textContent?.trim()).catch(() => 'unknown');
   console.log('   Subtotal:', subtotal);
 
